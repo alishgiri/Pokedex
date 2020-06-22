@@ -7,6 +7,6 @@ class BaseService {
   static final _instance = BaseService._internal();
 
   BaseService._internal() {
-    _dio = Dio(BaseOptions(baseUrl: 'https://pokeapi.co/api/v2'));
+    _dio = Dio(BaseOptions(baseUrl: 'https://pokeapi.co/api/v2/'));
   }
 }
