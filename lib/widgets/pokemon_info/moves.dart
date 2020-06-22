@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:pokedex/models/pokemon.dart';
-import 'package:pokedex/expensions/string.dart';
+import 'package:pokedex/extensions/string.dart';
 
 class PokemonMoves extends StatelessWidget {
   final List<Moves> moves;
