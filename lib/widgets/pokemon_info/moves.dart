@@ -10,11 +10,13 @@ class PokemonMoves extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (context, index) {
-        final move = moves[index];
-        return ListTile(title: Text(move.name.capitalize()));
-      },
+    return Scrollbar(
+      child: ListView.builder(
+        itemBuilder: (context, index) {
+          final move = moves[index];
+          return ListTile(title: Text(move.name.capitalize()));
+        },
+      ),
     );
   }
 }
