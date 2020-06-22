@@ -32,7 +32,8 @@ class _PokemonInfo extends State<PokemonInfo> {
     return await PokedexServices().getPokemonInfo(pokemonId: _pokemonId);
   }
 
-  Function _slideUpScreen(BuildContext context, Widget child) => () {
+  Function _slideUpScreen(BuildContext context, String title, Widget child) =>
+      () {
         final theme = Theme.of(context);
         final size = MediaQuery.of(context).size;
         showBottomSheet(
@@ -50,14 +51,18 @@ class _PokemonInfo extends State<PokemonInfo> {
                   topRight: Radius.circular(20),
                 ),
               ),
-              child: Stack(
+              child: Column(
                 children: <Widget>[
-                  child,
-                  Positioned(
-                    top: 10,
-                    right: 10,
-                    child: CloseButton(color: Colors.black),
-                  )
+                  ListTile(
+                    trailing: CloseButton(color: Colors.black),
+                    title: Text(
+                      title,
+                      style: theme.textTheme.headline5
+                          .copyWith(color: theme.primaryColor),
+                    ),
+                  ),
+                  Divider(height: 0),
+                  Expanded(child: child),
                 ],
               ),
             );
@@ -178,6 +183,7 @@ class _PokemonInfo extends State<PokemonInfo> {
                                   color: Colors.lightBlue.shade100,
                                   onPressed: _slideUpScreen(
                                     context,
+                                    "Moves",
                                     PokemonMoves(moves: pokemon.moves),
                                   ),
                                   child: Text(
@@ -194,6 +200,7 @@ class _PokemonInfo extends State<PokemonInfo> {
                                   color: Colors.lightBlue.shade100,
                                   onPressed: _slideUpScreen(
                                     context,
+                                    "Evolutions",
                                     PokemonEvolutions(),
                                   ),
                                   child: Text(
@@ -210,6 +217,7 @@ class _PokemonInfo extends State<PokemonInfo> {
                                   color: Colors.lightBlue.shade100,
                                   onPressed: _slideUpScreen(
                                     context,
+                                    "Locations",
                                     PokemonLocations(),
                                   ),
                                   child: Text(
@@ -226,6 +234,7 @@ class _PokemonInfo extends State<PokemonInfo> {
                                   color: Colors.lightBlue.shade100,
                                   onPressed: _slideUpScreen(
                                     context,
+                                    "Games",
                                     PokemonGames(),
                                   ),
                                   child: Text(
