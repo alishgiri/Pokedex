@@ -5,7 +5,11 @@ import 'package:pokedex/expensions/string.dart';
 import 'package:pokedex/utils/url_constants.dart';
 import 'package:pokedex/widgets/value_displayer.dart';
 import 'package:pokedex/services/pokedex_services.dart';
+import 'package:pokedex/widgets/pokemon_info/games.dart';
+import 'package:pokedex/widgets/pokemon_info/moves.dart';
 import 'package:pokedex/widgets/container_with_shadow.dart';
+import 'package:pokedex/widgets/pokemon_info/locations.dart';
+import 'package:pokedex/widgets/pokemon_info/evolutions.dart';
 
 class PokemonInfo extends StatefulWidget {
   final int pokemonId;
@@ -28,7 +32,8 @@ class _PokemonInfo extends State<PokemonInfo> {
     return await PokedexServices().getPokemonInfo(pokemonId: _pokemonId);
   }
 
-  Function _slideUpScreen(BuildContext context) => () {
+  Function _slideUpScreen(BuildContext context, Widget child) => () {
+        final theme = Theme.of(context);
         final size = MediaQuery.of(context).size;
         showBottomSheet(
           elevation: 20,
@@ -45,8 +50,15 @@ class _PokemonInfo extends State<PokemonInfo> {
                   topRight: Radius.circular(20),
                 ),
               ),
-              child: Column(
-                children: <Widget>[Text("TODO")],
+              child: Stack(
+                children: <Widget>[
+                  child,
+                  Positioned(
+                    top: 10,
+                    right: 10,
+                    child: CloseButton(color: Colors.black),
+                  )
+                ],
               ),
             );
           },
@@ -162,7 +174,12 @@ class _PokemonInfo extends State<PokemonInfo> {
                               scrollDirection: Axis.horizontal,
                               children: <Widget>[
                                 RaisedButton(
+                                  shape: StadiumBorder(),
                                   color: Colors.lightBlue.shade100,
+                                  onPressed: _slideUpScreen(
+                                    context,
+                                    PokemonMoves(moves: pokemon.moves),
+                                  ),
                                   child: Text(
                                     "Moves",
                                     style: theme.textTheme.subtitle1.copyWith(
@@ -170,12 +187,15 @@ class _PokemonInfo extends State<PokemonInfo> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  shape: StadiumBorder(),
-                                  onPressed: _slideUpScreen(context),
                                 ),
                                 SizedBox(width: 20),
                                 RaisedButton(
+                                  shape: StadiumBorder(),
                                   color: Colors.lightBlue.shade100,
+                                  onPressed: _slideUpScreen(
+                                    context,
+                                    PokemonEvolutions(),
+                                  ),
                                   child: Text(
                                     "Evolutions",
                                     style: theme.textTheme.subtitle1.copyWith(
@@ -183,12 +203,15 @@ class _PokemonInfo extends State<PokemonInfo> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  shape: StadiumBorder(),
-                                  onPressed: _slideUpScreen(context),
                                 ),
                                 SizedBox(width: 20),
                                 RaisedButton(
+                                  shape: StadiumBorder(),
                                   color: Colors.lightBlue.shade100,
+                                  onPressed: _slideUpScreen(
+                                    context,
+                                    PokemonLocations(),
+                                  ),
                                   child: Text(
                                     "Locations",
                                     style: theme.textTheme.subtitle1.copyWith(
@@ -196,12 +219,15 @@ class _PokemonInfo extends State<PokemonInfo> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  shape: StadiumBorder(),
-                                  onPressed: _slideUpScreen(context),
                                 ),
                                 SizedBox(width: 20),
                                 RaisedButton(
+                                  shape: StadiumBorder(),
                                   color: Colors.lightBlue.shade100,
+                                  onPressed: _slideUpScreen(
+                                    context,
+                                    PokemonGames(),
+                                  ),
                                   child: Text(
                                     "Games",
                                     style: theme.textTheme.subtitle1.copyWith(
@@ -209,8 +235,6 @@ class _PokemonInfo extends State<PokemonInfo> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  shape: StadiumBorder(),
-                                  onPressed: _slideUpScreen(context),
                                 ),
                                 SizedBox(width: 20),
                               ],
