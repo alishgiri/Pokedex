@@ -20,7 +20,6 @@ class Pokemon {
   });
 
   factory Pokemon.fromJSON(Map<String, dynamic> data) {
-    print(data);
     return Pokemon(
       id: data['id'],
       name: data['name'],
