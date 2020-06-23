@@ -36,9 +36,10 @@ class SearchBar extends StatelessWidget {
           )
         ],
       ),
+      constraints: BoxConstraints(maxHeight: 70),
       height: searchMode ? size.height * 0.1 : 0,
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           searchMode
               ? Flexible(
@@ -56,8 +57,9 @@ class SearchBar extends StatelessWidget {
                         return null;
                       },
                       decoration: InputDecoration(
-                        hintText: 'Search Pokemon',
+                        border: InputBorder.none,
                         hintStyle: inputTextStyle,
+                        hintText: 'Search Pokemon',
                         labelStyle: inputTextStyle,
                         contentPadding: EdgeInsets.only(left: 20, right: 10),
                       ),
