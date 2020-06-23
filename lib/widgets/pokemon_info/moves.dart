@@ -12,6 +12,7 @@ class PokemonMoves extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scrollbar(
       child: ListView.builder(
+        itemCount: moves.length,
         itemBuilder: (context, index) {
           final move = moves[index];
           return ListTile(title: Text(move.name.capitalize()));
