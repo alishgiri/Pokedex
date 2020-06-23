@@ -183,7 +183,7 @@ class _PokemonInfo extends State<PokemonInfo> {
                                   color: Colors.lightBlue.shade100,
                                   onPressed: _slideUpScreen(
                                     context,
-                                    "Moves",
+                                    "Moves (${pokemon.moves.length})",
                                     PokemonMoves(moves: pokemon.moves),
                                   ),
                                   child: Text(
