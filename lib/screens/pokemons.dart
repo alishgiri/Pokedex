@@ -107,8 +107,7 @@ class _Pokemons extends State<Pokemons> {
                     itemCount: pokemons.length,
                     padding: EdgeInsets.all(10),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: rowNum,
-                    ),
+                        crossAxisCount: rowNum, childAspectRatio: 0.9),
                     itemBuilder: (context, index) {
                       final pokemon = pokemons[index];
                       final split = pokemon.url.split('/');
